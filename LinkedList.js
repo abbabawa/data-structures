@@ -19,12 +19,13 @@ class LinkedList{
         else{
             this.head = new Node(data, this.head)
         }
+        return this.head
     }
 
     insertAtTail(data){
         if(!this.head){
             this.head = new Node(data)
-            return 
+            return this.head
         }
 
         let current = this.head
@@ -32,12 +33,17 @@ class LinkedList{
             current = current.next
         }
         current.next = new Node(data)
+        return current.next
     }
 
     insertAfter(data, node){
+        if(!node.data){
+            return null
+        }
         let newNode = new Node(data)
         newNode.next = node.next
         node.next = newNode
+        return node.next
     }
 
     search(data){
@@ -83,10 +89,15 @@ class LinkedList{
             return
         }
 
-        for(let i = 0; i< position && current.next != null; i++){//console.log(current)
+        let i = 0
+        for(; i< position && current.next != null; i++){//console.log(current)
             previous = current
             current = current.next
-        }console.log(current)
+        }
+        //Exit if position is out of range
+        if(i != position){
+            return
+        }
         if (current == null || (current.next == null && current.data == null)) {
             return
         }
@@ -99,6 +110,8 @@ class LinkedList{
     }
 }
 
+module.exports = LinkedList
+
 let list = new LinkedList()
 // list.insertAtHead(10)
 // list.insertAtHead(20)
@@ -108,9 +121,9 @@ let list = new LinkedList()
 // list.insertAfter(394, current)
 // list.deleteNode(20)
 
-list.insertAtTail(2)
-list.insertAtTail(3)
-list.insertAtTail(1)
-list.insertAtTail(7)
-list.deleteNodeAt(60)
-list.printList()
+// list.insertAtTail(2)
+// list.insertAtTail(3)
+// list.insertAtTail(1)
+// list.insertAtTail(7)
+// list.deleteNodeAt(69)
+// list.printList()
