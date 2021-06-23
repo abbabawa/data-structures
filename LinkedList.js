@@ -81,7 +81,7 @@ class LinkedList{
     }
 
     //Function to delete the node at a particular position
-    deleteNodeAt(position){
+    deleteNodeAt1(position){
         let current = this.head
         let previous = null
         if(position == 0){
@@ -99,6 +99,24 @@ class LinkedList{
             return
         }
         if (current == null || (current.next == null && current.data == null)) {
+            return
+        }
+        previous.next = current.next
+        current = null
+    }
+
+    deleteNodeAt(position){
+        let previous = null
+        let current = this.head
+        for(let i=0; i<position; i++){
+            if(current.next == null){
+                return
+            }
+            previous = current
+            current = current.next
+        }
+        if(previous == null){
+            this.head = current.next
             return
         }
         previous.next = current.next
@@ -125,5 +143,6 @@ let list = new LinkedList()
 // list.insertAtTail(3)
 // list.insertAtTail(1)
 // list.insertAtTail(7)
-// list.deleteNodeAt(69)
+// list.deleteNodeAt(3)
 // list.printList()
+// console.log(list.search(1))

@@ -47,5 +47,5 @@ test('deleteNodeAt', ()=>{
 	list.insertAtHead(0)
 	list.insertAtHead(8)
 	list.deleteNodeAt(2)
-	expect(list.search(0)).toBe("item not found")
+	expect(list.search(13)).toBe("item not found")
 })
