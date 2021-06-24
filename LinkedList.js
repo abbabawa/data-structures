@@ -81,30 +81,6 @@ class LinkedList{
     }
 
     //Function to delete the node at a particular position
-    deleteNodeAt1(position){
-        let current = this.head
-        let previous = null
-        if(position == 0){
-            this.head = this.head.next
-            return
-        }
-
-        let i = 0
-        for(; i< position && current.next != null; i++){//console.log(current)
-            previous = current
-            current = current.next
-        }
-        //Exit if position is out of range
-        if(i != position){
-            return
-        }
-        if (current == null || (current.next == null && current.data == null)) {
-            return
-        }
-        previous.next = current.next
-        current = null
-    }
-
     deleteNodeAt(position){
         let previous = null
         let current = this.head
