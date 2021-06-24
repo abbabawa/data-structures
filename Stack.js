@@ -1,4 +1,5 @@
 class Stack{
+	//TODO: Enforce the use of size
 	size = 0
 	top = -1
 	container = []

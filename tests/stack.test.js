@@ -3,6 +3,7 @@ const stack = require('../Stack')
 test('push', ()=>{
 	let stackObj = new stack()
 	expect(stackObj.push(2)).toBe('Item added successfully')
+	expect(stackObj.push(43)).toBe('Item added successfully')
 })
 
 test('pop', ()=>{
