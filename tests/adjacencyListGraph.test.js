@@ -33,7 +33,7 @@ test('delete edge', ()=>{
 	graph.addEdge("A", "B")
 	graph.addEdge("A", "C")
 	graph.deleteEdge("A", "B")
-	console.log(graph.getVertices().find(val=>{return val.name === "A"}).list)
+	//console.log(graph.getVertices().find(val=>{return val.name === "A"}).list)
 	expect(graph.getVertices()
 		.find(val=>{return val.name === "A"})
 		.edges.findIndex(val=>{return val==="B"}))
