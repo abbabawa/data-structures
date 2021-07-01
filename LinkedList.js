@@ -36,29 +36,48 @@ class LinkedList{
         return current.next
     }
 
-    insertAfter(data, node){
-        if(!node.data){
-            return null
-        }
+    insertAfter(data, position){
+        // if(!node.data){
+        //     return null
+        // }
         let newNode = new Node(data)
-        newNode.next = node.next
-        node.next = newNode
-        return node.next
+        // newNode.next = node.next
+        // node.next = newNode
+        // return node.next
+
+        if (!this.head) {
+            return -1
+        }
+        let current = this.head
+        let count = 1
+        while(current){
+            if (count === position) {
+                newNode.next = current.next
+                current.next = newNode
+                return ++count //return position of item added
+            }else{
+                current = current.next
+            }
+            count++
+        }
+        return -1
     }
 
     search(data){
         if (!this.head) {
-            return "List is empty"
+            return -1
         }
         let current = this.head
+        let count = 1
         while(current){
-            if (current.data == data) {
-                return current
+            if (current.data === data) {
+                return count
             }else{
                 current = current.next
             }
+            count++
         }
-        return "item not found"
+        return -1
     }
 
     deleteNode(data){
@@ -97,6 +116,19 @@ class LinkedList{
         }
         previous.next = current.next
         current = null
+    }
+
+    getListItems(){
+        let items = []
+        if (!this.head) {
+            return items
+        }
+        let current = this.head
+        while(current){
+            items.push(current.data)
+            current = current.next
+        }
+        return items
     }
 
     printList(){

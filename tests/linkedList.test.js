@@ -17,8 +17,7 @@ test('insert after', ()=>{
 	list.insertAtHead(5)
 	list.insertAtTail(10)
 	list.insertAtTail(15)
-	let node = list.search(10)
-	expect(list.insertAfter(3, node).data).toBe(3)
+	expect(list.insertAfter(3, 2)).toBe(3)
 })
 
 test('search', ()=>{
@@ -27,7 +26,8 @@ test('search', ()=>{
 	list.insertAtHead(13)
 	list.insertAtHead(0)
 	list.insertAtHead(8)
-	expect(list.search(13).data).toBe(13)
+	expect(list.search(13)).toBeGreaterThan(0)
+	expect(list.search(20)).toBeLessThan(0)
 })
 
 test('deleteNode', ()=>{
@@ -37,7 +37,7 @@ test('deleteNode', ()=>{
 	list.insertAtHead(0)
 	list.insertAtHead(8)
 	list.deleteNode(13)
-	expect(list.search(2)).toBe("item not found")
+	expect(list.search(2)).toBeLessThan(0)
 })
 
 test('deleteNodeAt', ()=>{
@@ -47,5 +47,17 @@ test('deleteNodeAt', ()=>{
 	list.insertAtHead(0)
 	list.insertAtHead(8)
 	list.deleteNodeAt(2)
-	expect(list.search(13)).toBe("item not found")
+	expect(list.search(13)).toBeLessThan(0)
+})
+
+
+test('get list items', ()=>{
+	let list = new linkedList()
+	expect(list.getListItems().length).toEqual(0)
+	list.insertAtHead(10)
+	list.insertAtHead(13)
+	list.insertAtTail(0)
+	list.insertAtHead(8)
+	list.deleteNodeAt(2)
+	expect(list.getListItems().length).toEqual(3)
 })
