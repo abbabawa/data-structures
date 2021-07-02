@@ -62,3 +62,48 @@ test('get vertices', ()=>{
 	expect(vertices.findIndex(val=>{return val.name==="A"})).toBeGreaterThanOrEqual(0)
 	expect(vertices.length).toEqual(4)
 })
+
+
+test('breadth first search', ()=>{
+	let graph = new Graph()
+	graph.addVertex("A")
+	graph.addVertex("B")
+	graph.addVertex("C")
+	graph.addEdge("A", "B")
+	graph.addVertex("D")
+	graph.addEdge("A", "C")
+	graph.addEdge("B", "D")
+	graph.addVertex("E")
+	graph.addEdge("B", "E")
+	graph.addVertex("F")
+	graph.addEdge("C", "F")
+	graph.addVertex("G")
+	let vertices = graph.breadthFirstSearch()
+	console.log(vertices)
+	let order = ["A", "B", "C", "D", "E", "F"]
+	for(let i=0; i<vertices.length; i++){
+		expect(vertices[i]).toBe(order[i])
+	}
+})
+
+test('breadth first search', ()=>{
+	let graph = new Graph()
+	graph.addVertex("A")
+	graph.addVertex("B")
+	graph.addVertex("C")
+	graph.addEdge("A", "B")
+	graph.addVertex("D")
+	graph.addEdge("A", "C")
+	graph.addEdge("B", "D")
+	graph.addVertex("E")
+	graph.addEdge("B", "E")
+	graph.addVertex("F")
+	graph.addEdge("C", "F")
+	graph.addVertex("G")
+	let vertices = graph.depthFirstSearch()
+	console.log(vertices)
+	let order = ["A", "C", "F", "B", "E", "D"]
+	for(let i=0; i<vertices.length; i++){
+		expect(vertices[i]).toBe(order[i])
+	}
+})

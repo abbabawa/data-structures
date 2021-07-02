@@ -1,12 +1,11 @@
 const Queue = require('../Queue')
 
 test('enqueue', ()=>{
-	let queueObj = new Queue(4)
+	let queueObj = new Queue()
 	expect(queueObj.enqueue(2)).toBe('Item added successfully')
 	expect(queueObj.enqueue(4)).toBe('Item added successfully')
 	expect(queueObj.enqueue(12)).toBe('Item added successfully')
 	expect(queueObj.enqueue(5)).toBe('Item added successfully')
-	expect(queueObj.enqueue(9)).not.toEqual('Item added successfully')
 })
 
 test('dequeue', ()=>{
@@ -43,16 +42,16 @@ test('is empty', ()=>{
 	expect(queueObj.isEmpty()).toBe(true)
 })
 
-test('is full', ()=>{
-	let queueObj = new Queue(4)
-	expect(queueObj.isFull()).toBe(false)
-	queueObj.enqueue(13)
-	queueObj.enqueue(76)
-	queueObj.enqueue(11)
-	queueObj.enqueue(99)
-	expect(queueObj.isFull()).toBe(true)
-	queueObj.dequeue()
-	queueObj.dequeue()
-	queueObj.dequeue()
-	expect(queueObj.isFull()).toBe(false)
-})
+// test('is full', ()=>{
+// 	let queueObj = new Queue(4)
+// 	expect(queueObj.isFull()).toBe(false)
+// 	queueObj.enqueue(13)
+// 	queueObj.enqueue(76)
+// 	queueObj.enqueue(11)
+// 	queueObj.enqueue(99)
+// 	expect(queueObj.isFull()).toBe(true)
+// 	queueObj.dequeue()
+// 	queueObj.dequeue()
+// 	queueObj.dequeue()
+// 	expect(queueObj.isFull()).toBe(false)
+// })

@@ -1,4 +1,6 @@
 const List = require("./LinkedList")
+const Queue = require("./Queue")
+const Stack = require("./Stack")
 
 class Vertex{
     name
@@ -86,6 +88,51 @@ class AdjacencyListGraph{
 			}
 		}
 		return vertices
+	}
+
+	//Unconnected vertices are not visited
+	breadthFirstSearch(){
+		let visited = []
+		let queue = new Queue()
+
+		let current = this.container[0]
+		while(current !== null){
+			//Check if current vertex has already been visited
+			if(visited.findIndex(val=>{return val === current.name}) < 0){
+				visited[visited.length] = current.name
+				let items = current.list.getListItems()
+				for(let i=0; i<items.length; i++){
+					queue.enqueue(items[i])
+				}
+			}
+			let next = queue.dequeue()
+
+			current = (next === "Queue is empty") ? null : this.container.find(val=>{return val.name === next})
+		}
+		return visited
+	}
+
+
+	//Doesnt visit unconnected vertices
+	depthFirstSearch(){
+		let visited = []
+		let stack = new Stack()
+
+		let current = this.container[0]
+		while(current !== null){
+			//Check if current vertex has already been visited
+			if(visited.findIndex(val=>{return val === current.name}) < 0){
+				visited[visited.length] = current.name
+				let items = current.list.getListItems()
+				for(let i=0; i<items.length; i++){
+					stack.push(items[i])
+				}
+			}
+			let next = stack.pop()
+
+			current = (next === "Stack underflow") ? null : this.container.find(val=>{return val.name === next})
+		}
+		return visited
 	}
 
 }

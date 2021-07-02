@@ -1,19 +1,13 @@
 class Queue{
-	size = 0
 	front = -1
 	rear = -1
 	container = []
 
-	constructor(size){
-		if(size > 0)
-			this.size = size
-	}
-
 	enqueue(data){
 		//Check if adding data will cause an overflow
-		if ((this.rear + 1) >= this.size) {
-			return "Queue is full"
-		}
+		// if ((this.rear + 1) >= this.size) {
+		// 	return "Queue is full"
+		// }
 		if (this.front < 0) {
 			this.front++
 		}
@@ -50,14 +44,14 @@ class Queue{
 		}
 	}
 
-	isFull(){
-		//Rear starts from 0 (in order to index array properly) so 1 is added to compensate for that
-		if ((this.rear + 1) >= this.size) {
-			return true
-		}else{
-			return false
-		}
-	}
+	// isFull(){
+	// 	//Rear starts from 0 (in order to index array properly) so 1 is added to compensate for that
+	// 	if ((this.rear + 1) >= this.size) {
+	// 		return true
+	// 	}else{
+	// 		return false
+	// 	}
+	// }
 }
 
 module.exports = Queue
