@@ -79,7 +79,7 @@ test('breadth first search', ()=>{
 	graph.addEdge("C", "F")
 	graph.addVertex("G")
 	let vertices = graph.breadthFirstSearch()
-	console.log(vertices)
+	//console.log(vertices)
 	let order = ["A", "B", "C", "D", "E", "F"]
 	for(let i=0; i<vertices.length; i++){
 		expect(vertices[i]).toBe(order[i])
@@ -101,7 +101,7 @@ test('breadth first search', ()=>{
 	graph.addEdge("C", "F")
 	graph.addVertex("G")
 	let vertices = graph.depthFirstSearch()
-	console.log(vertices)
+	//console.log(vertices)
 	let order = ["A", "C", "F", "B", "E", "D"]
 	for(let i=0; i<vertices.length; i++){
 		expect(vertices[i]).toBe(order[i])
