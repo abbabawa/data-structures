@@ -1,0 +1,48 @@
+const Tree = require("../AVLTree")
+
+/*test('insert', ()=>{console.log("start")
+	let tree = new Tree(20)
+	tree.insert(30)
+	tree.insert(10)
+	tree.insert(11)
+	tree.insert(40)
+	tree.insert(50)
+	tree.insert(13)
+	tree.insert(16)
+	tree.insert(17)
+	tree.insert(19)
+	
+	//console.log(tree.inorder())
+})*/
+
+test('left rotate', ()=>{
+	let tree = new Tree(20)
+	tree.insert(24)
+	tree.insert(26)
+	tree.insert(27)
+	tree.insert(28)
+})
+
+test('right rotate', ()=>{//console.log("right rotate")
+	let tree = new Tree(30)
+	tree.insert(24)
+	tree.insert(20)
+	tree.insert(19)
+	tree.insert(16)
+})
+
+test('left right rotate', ()=>{//console.log("left right rotate")
+	let tree = new Tree(30)
+	tree.insert(24)
+	tree.insert(26)
+	tree.insert(15)
+	tree.insert(16)
+})
+
+test('right left rotate', ()=>{console.log("right left rotate")
+	let tree = new Tree(30)
+	tree.insert(40)
+	tree.insert(35)
+	tree.insert(15)
+	tree.insert(16)
+})

@@ -13,23 +13,23 @@ class Node{
 class BinarySearchTree{
 	#root
 	constructor(data){
-		this.#root = new Node(data)
+		this._root = new Node(data)
 	}
 
 	insert(data){
-		let current = this.#root
+		let current = this._root
 		while(current){
 			if(data < current.data){
 				if(current.left === null){
 					current.left = new Node(data)
-					return
+					return current.left
 				}else{
 					current = current.left
 				}
 			}else{
 				if(current.right === null){
 					current.right = new Node(data)
-					return
+					return current.right
 				}else{
 					current = current.right
 				}
@@ -38,7 +38,7 @@ class BinarySearchTree{
 	}
 
 	search(key){
-		let current = this.#root
+		let current = this._root
 		while(current !== null){
 			if(key == current.data){
 				return true
@@ -53,8 +53,8 @@ class BinarySearchTree{
 
 	//Todo: Complete delete function. deleting node with two children
 	delete(item){
-		let parent = this.#root
-		let current = this.#root
+		let parent = this._root
+		let current = this._root
 		while(current !== null){
 			if(item > current.data){
 				parent = current
@@ -139,7 +139,7 @@ class BinarySearchTree{
 	}
 
 	preorder(){
-		let current = this.#root
+		let current = this._root
 		let values = []
 		let stack = new Stack()
 		while(current !== "Stack underflow"){
@@ -155,8 +155,8 @@ class BinarySearchTree{
 		return values
 	}
 
-	inorder(){
-		let current = this.#root
+	inorder(node=this._root){
+		let current = node
 		let values = []
 		let stack = new Stack() //Stack to help us keep track of items we are yet to process
 		while(current !== 'Stack underflow' && current !== null){
@@ -176,7 +176,7 @@ class BinarySearchTree{
 	}
 
 	postorder(){
-		let current = this.#root
+		let current = this._root
 		let values = []
 		let stack = new Stack() //Stack to help us keep track of items we are yet to process
 		while(current !== 'Stack underflow' && current !== null){
