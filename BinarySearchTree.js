@@ -52,6 +52,7 @@ class BinarySearchTree{
 	}
 
 	delete(item){
+		//Search for item to be deleted
 		let parent = this._root
 		let current = this._root
 		while(current !== null){
@@ -65,7 +66,7 @@ class BinarySearchTree{
 				break
 			}
 		}
-		console.log(current)
+
 		//Node has no children
 		if (current.left === null && current.right === null) {
 			parent.data > item ? parent.left = null : parent.right = null
@@ -79,15 +80,15 @@ class BinarySearchTree{
 			parent.data > item ? parent.left = current.left : parent.right = current.left
 		}
 		//Node has two children
-		else if(current.left !== null && current.right !== null){console.log(current, item, this.inorder(current))
+		else if(current.left !== null && current.right !== null){
 			let smallest = current.right
 			let prev = current
 			while(smallest.left !== null || smallest.right !== null){
 				prev = smallest
 				smallest.left === null ? smallest = smallest.right : smallest = smallest.left
-			}console.log(smallest, "|", parent)
+			}
 			current.data = smallest.data
-			console.log(current, this.inorder(this._root))
+			prev.left === smallest.data ? prev.left = null : prev.right = null
 		}
 			
 	}

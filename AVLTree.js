@@ -46,8 +46,75 @@ class AVLTree extends BinarySearchTree{
 		}
 		//console.log(data)
 		//console.log(ancestors)
+		//TODO: extract into a function. Same code in deletion
 		for(let i=ancestors.length - 1; i>= 0; i--){
 			//console.log(this.calculateBalanceFactor(ancestors[i]))
+			//Check if node is balanced
+			if(this.calculateBalanceFactor(ancestors[i]) > 1 || this.calculateBalanceFactor(ancestors[i]) < -1){
+				if(ancestors[i].right && data > ancestors[i].right.data){//console.log(ancestors[i])
+					this.leftRotate(ancestors[i])
+				}
+				else if(ancestors[i].right && data < ancestors[i].right.data){
+					this.rigthLeftRotate(ancestors[i])
+				}
+				else if (data < ancestors[i].left.data) {//console.log(ancestors[i])
+					this.rightRotate(ancestors[i])
+					//console.log(this._root)
+				}else if (data > ancestors[i].left.data) {//console.log(ancestors[i])
+					this.leftRightRotate(ancestors[i])
+					this._root
+				}
+			}
+		}
+	}
+
+	delete(item){
+		//Search for item to be deleted
+		let ancestors = [] //Keeping track of ancestor to facilitate re-balancing after deletion
+		let parent = this._root
+		let current = this._root
+		while(current !== null){
+			if(item > current.data){
+				ancestors.push(current)
+				parent = current
+				current = current.right
+			}else if(item < current.data){
+				ancestors.push(current)
+				parent = current
+				current = current.left
+			}else{
+				break
+			}
+		}
+
+		//Node has no children
+		if (current.left === null && current.right === null) {
+			parent.data > item ? parent.left = null : parent.right = null
+		}
+		//Node has left child
+		else if (current.left === null && current.right !== null) {
+			parent.data > item ? parent.left = current.right : parent.right = current.right
+		}
+		//Node has right child
+		else if (current.left !== null && current.right === null) {
+			parent.data > item ? parent.left = current.left : parent.right = current.left
+		}
+		//Node has two children
+		else if(current.left !== null && current.right !== null){
+			let smallest = current.right
+			let prev = current
+			while(smallest.left !== null || smallest.right !== null){
+				prev = smallest
+				smallest.left === null ? smallest = smallest.right : smallest = smallest.left
+			}
+			current.data = smallest.data
+			prev.left === smallest.data ? prev.left = null : prev.right = null
+		}
+
+		//TODO: extract into a function. Same code in insertion
+		for(let i=ancestors.length - 1; i>= 0; i--){
+			//console.log(this.calculateBalanceFactor(ancestors[i]))
+			//Check if node is balanced
 			if(this.calculateBalanceFactor(ancestors[i]) > 1 || this.calculateBalanceFactor(ancestors[i]) < -1){
 				if(ancestors[i].right && data > ancestors[i].right.data){//console.log(ancestors[i])
 					this.leftRotate(ancestors[i])

@@ -46,3 +46,58 @@ test('right left rotate', ()=>{//console.log("right left rotate")
 	tree.insert(15)
 	tree.insert(16)
 })
+
+test('delete', ()=>{
+	let tree = new Tree(20)
+	tree.insert(25)
+	tree.insert(15)
+	tree.insert(28)
+	tree.insert(23)
+	tree.insert(18)
+	tree.insert(12)
+	tree.insert(8)
+	tree.insert(13)
+	tree.insert(24)
+	tree.insert(26)
+
+	//Delete node with no children
+	values = [8, 12, 13, 15, 18, 20, 23, 25, 26, 28]
+	tree.delete(24)
+	nodes = tree.inorder()
+	//console.log(nodes)
+	for(let i=0; i<nodes.length; i++){
+		expect(nodes[i]).toEqual(values[i])
+	}
+
+	//delete node with left child
+	values = [8, 12, 13, 15, 18, 20, 23, 25, 26]
+	tree.delete(28)
+	nodes = tree.inorder()
+	for(let i=0; i<nodes.length; i++){
+		expect(nodes[i]).toEqual(values[i])
+	}
+
+	//delete node with right child
+	tree.insert(29)
+	values = [8, 12, 13, 15, 18, 20, 23, 25, 29]
+	tree.delete(26)
+	nodes = tree.inorder()
+	for(let i=0; i<nodes.length; i++){
+		expect(nodes[i]).toEqual(values[i])
+	}
+
+	//delete node with two children
+	values = [8, 12, 13, 18, 20, 23, 25, 29]
+	tree.delete(15)
+	nodes = tree.inorder()
+	for(let i=0; i<nodes.length; i++){
+		expect(nodes[i]).toEqual(values[i])
+	}
+
+	values = [8, 12, 13, 18, 23, 25, 29]
+	tree.delete(20)
+	nodes = tree.inorder()
+	for(let i=0; i<nodes.length; i++){
+		expect(nodes[i]).toEqual(values[i])
+	}
+})

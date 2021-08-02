@@ -63,7 +63,7 @@ class Trie{
 			//}
 				current = queue.dequeue()
 		}
-		console.log(values)
+		//console.log(values)
 	}
 }
 
