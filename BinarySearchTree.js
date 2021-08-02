@@ -51,7 +51,6 @@ class BinarySearchTree{
 		return false
 	}
 
-	//Todo: Complete delete function. deleting node with two children
 	delete(item){
 		let parent = this._root
 		let current = this._root
@@ -66,50 +65,29 @@ class BinarySearchTree{
 				break
 			}
 		}
-		
-		//If node has no children just set parent pointer to null
-		if(current.left === null && current.right === null){
-			if(parent.left.data === item)
-				parent.left = null
-			else
-				parent.right = null
-			return
-		}else if((current.left !== null && current.right === null)){
-			if(parent.left.data === item)
-				parent.left = current.left
-			else
-				parent.right = current.left
-			return
-		}else if((current.right !== null && current.left === null)){
-			if(parent.left.data === item)
-				parent.left = current.right
-			else
-				parent.right = current.right
-			return 
-		}else{
-			//If node has two children
-			//console.log(parent)
-			let predecessor = this.inOrderPredecessor(current)
-
-			if(parent.left.data === item)
-				parent.left = predecessor
-			else
-				parent.right = predecessor
-
-			let temp 
-			if(predecessor.left === null){
-				temp = predecessor
-			}else{
-				temp = predecessor.left
-			}
-			
-			while(temp !== null){
-				if(temp.left === null)
-					break
-				temp = temp.left
-			}
-			temp.left = current.left
-			return
+		console.log(current)
+		//Node has no children
+		if (current.left === null && current.right === null) {
+			parent.data > item ? parent.left = null : parent.right = null
+		}
+		//Node has left child
+		else if (current.left === null && current.right !== null) {
+			parent.data > item ? parent.left = current.right : parent.right = current.right
+		}
+		//Node has right child
+		else if (current.left !== null && current.right === null) {
+			parent.data > item ? parent.left = current.left : parent.right = current.left
+		}
+		//Node has two children
+		else if(current.left !== null && current.right !== null){console.log(current, item, this.inorder(current))
+			let smallest = current.right
+			let prev = current
+			while(smallest.left !== null || smallest.right !== null){
+				prev = smallest
+				smallest.left === null ? smallest = smallest.right : smallest = smallest.left
+			}console.log(smallest, "|", parent)
+			current.data = smallest.data
+			console.log(current, this.inorder(this._root))
 		}
 			
 	}

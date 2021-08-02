@@ -39,7 +39,7 @@ test('left right rotate', ()=>{//console.log("left right rotate")
 	tree.insert(16)
 })
 
-test('right left rotate', ()=>{console.log("right left rotate")
+test('right left rotate', ()=>{//console.log("right left rotate")
 	let tree = new Tree(30)
 	tree.insert(40)
 	tree.insert(35)

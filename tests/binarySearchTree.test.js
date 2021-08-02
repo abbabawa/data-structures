@@ -138,10 +138,18 @@ test('delete', ()=>{
 		expect(nodes[i]).toEqual(values[i])
 	}
 
+	tree.insert(27)
+	tree.delete(28)
+	nodes = tree.inorder()
+	values = [8, 12, 13, 15, 18, 20, 24, 25, 27]
+	for(let i=0; i<nodes.length; i++){
+		expect(nodes[i]).toEqual(values[i])
+	}
+
 	tree.delete(15)
 	nodes = tree.inorder()
 	//console.log(nodes)
-	values = [8, 12, 13, 18, 20, 24, 25, 28]
+	values = [8, 12, 13, 18, 20, 24, 25, 27]
 	for(let i=0; i<nodes.length; i++){
 		expect(nodes[i]).toEqual(values[i])
 	}
@@ -150,9 +158,9 @@ test('delete', ()=>{
 	tree.delete(20)
 	nodes = tree.inorder()
 	//console.log(nodes)
-	values = [8, 12, 13, 18, 24, 25, 28]
+	values = [8, 12, 13, 18, 24, 25, 27]
 	for(let i=0; i<nodes.length; i++){
-		///expect(nodes[i]).toEqual(values[i])
+		expect(nodes[i]).toEqual(values[i])
 	}
 
 	// tree = new Tree(12)

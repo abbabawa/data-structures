@@ -44,10 +44,10 @@ class AVLTree extends BinarySearchTree{
 				}
 			}
 		}
-		console.log(data)
+		//console.log(data)
 		//console.log(ancestors)
 		for(let i=ancestors.length - 1; i>= 0; i--){
-			console.log(this.calculateBalanceFactor(ancestors[i]))
+			//console.log(this.calculateBalanceFactor(ancestors[i]))
 			if(this.calculateBalanceFactor(ancestors[i]) > 1 || this.calculateBalanceFactor(ancestors[i]) < -1){
 				if(ancestors[i].right && data > ancestors[i].right.data){//console.log(ancestors[i])
 					this.leftRotate(ancestors[i])
