@@ -1,5 +1,7 @@
 html
 	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
 		title=	"Data structure visualization"
 		link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous")
 		link(href="./css/style.css" rel="stylesheet")
@@ -14,5 +16,25 @@ html
 							a(class="navbar-brand" href="#") Data Structures Visualization
 
 					//- canvas(id="canvas" width="500" height="500")
-		
-		script(src="./js/index.js" type="module") 
+			
+			div(class="row")
+				div(class="col-md-8 mt-3")
+					div(class="card")
+						div(class="card-header")=	"Data structures"
+						div(class="card-body")
+							|	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							|	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							|	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							|	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							|	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							|	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+				div(class="col-md-4 mt-3")
+					div(class="card")
+						
+						div(class="card-body")
+							div(class="list-group")
+								a(href="/visualize/1" class="list-group-item list-group-item-action")=	"Linked List"
+								a(href="/visualize/2" class="list-group-item list-group-item-action")=	"Queue" 
+								a(href="/visualize/3" class="list-group-item list-group-item-action")=	"Graph"
+		//- script(src="./js/index.js" type="module") 

@@ -15,11 +15,12 @@ app.use(express.static('public'))
 
 
 app.get("/", (req, res)=>{
-	res.send("Data structure visualization")
+	res.render("index")
 })
 
-app.get("/visualize", (req, res)=>{
-	res.render("index")
+app.get("/visualize/:id", (req, res)=>{
+	let ds = req.params.id
+	res.render("visualize", {ds: ds})
 })
 
 app.listen(port, ()=>{
