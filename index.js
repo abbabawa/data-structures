@@ -18,6 +18,10 @@ app.get("/", (req, res)=>{
 	res.send("Data structure visualization")
 })
 
+app.get("/visualize", (req, res)=>{
+	res.render("index")
+})
+
 app.listen(port, ()=>{
 	console.log("app listening on port: "+port)
 })
