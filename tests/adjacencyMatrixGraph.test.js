@@ -1,4 +1,4 @@
-let AdjacencyMatrixGraph = require("../AdjacencyMatrixGraph")
+let AdjacencyMatrixGraph = require("../class_lib/AdjacencyMatrixGraph")
 
 test('add edge', ()=>{
 	let graph = new AdjacencyMatrixGraph(5)

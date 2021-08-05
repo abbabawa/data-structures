@@ -1,4 +1,4 @@
-const Trie = require("../Trie")
+const Trie = require("../class_lib/Trie")
 
 test('insert', ()=>{
 	let trie = new Trie()

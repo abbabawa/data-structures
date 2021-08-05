@@ -2,13 +2,20 @@
   "name": "data-structures",
   "version": "1.0.0",
   "description": "",
-  "main": "LinkedList.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon index"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^27.0.5"
+    "jest": "^27.0.5",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "pug": "^3.0.2"
   }
 }

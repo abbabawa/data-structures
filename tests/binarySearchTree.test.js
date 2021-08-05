@@ -1,4 +1,4 @@
-const Tree = require("../BinarySearchTree")
+const Tree = require("../class_lib/BinarySearchTree")
 
 test('insert', ()=>{
 	let tree = new Tree(10)
