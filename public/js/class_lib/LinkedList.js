@@ -1,30 +1,94 @@
 //https://betterprogramming.pub/understanding-and-implementing-linked-lists-in-javascript-with-es6-c6f8720b38a
+import {Rectangle} from "./Rectangle.js"
 class Node{
     data
     next
-    constructor(data, next = null){
+    //Drawing properties
+    displayProps = {rect1: null, rect2: null, line: null}
+    startX
+    startY
+    //Defaul box width and height
+    rectWidth = 40
+    rectHeight = 40
+    ctx
+    constructor(data, rectProps, ctx, next = null){
         this.data = data
         this.next = next
+        this.startX = rectProps.x
+        this.startY = rectProps.y
+        this.ctx = ctx
+
+        //this.draw()
+    }
+
+    draw(){
+        this.displayProps.rect1 = new Rectangle(this.ctx, {x: this.startX, y: this.startY, width: this.rectWidth, height: this.rectHeight}, this.data)
+        this.displayProps.rect2 = 
+                new Rectangle(
+                    this.ctx, 
+                    {x: this.startX + this.rectWidth, y: this.startY + (this.rectWidth * 0.25), width: (this.rectWidth * 0.5), height: (this.rectHeight * 0.5)}, 
+                    "."
+                )
+        if(this.next){
+            this.ctx.beginPath()
+            this.ctx.moveTo(
+                this.startX + this.rectWidth + (this.rectWidth * 0.5), 
+                this.startY + (this.rectHeight * 0.5)
+            )
+            this.ctx.lineTo(
+                this.startX + this.rectWidth + (this.rectWidth * 0.5) + 10, 
+                this.startY + (this.rectHeight * 0.5)
+            )
+            this.ctx.stroke()
+        }
+    }
+
+    getProps(){
+        return {
+            x: this.startX,
+            y: this.startY,
+            width: this.rectWidth + (this.rectWidth * 0.5) + 10, //10= line length
+            height: this.startY + this.rectHeight
+        }
+    }
+
+    update(x, y, data = this.data){
+        this.startX = x
+        this.startY = y
+        this.data = data
+    }
+
+    remove(){if(this.data === 20){console.log("remove"+this.data)}
+        this.ctx.clearRect(this.startX - 3, this.startY - 3, this.rectWidth + (this.rectWidth * 0.5) + 10, this.startY + this.rectHeight)
     }
 }
 
 class LinkedList{
     head = null
     size = 0
+    ctx
+    constructor(ctx){
+        this.ctx = ctx
+    }
     
     insertAtHead(data){
         if(!this.head){
-            this.head = new Node(data)
+            this.head = new Node(data, {x: 10, y:20}, this.ctx)
+            this.printList()
         }
         else{
-            this.head = new Node(data, this.head)
+            this.head.remove()
+            this.head = new Node(data, {x: this.head.getProps().x, y: this.head.getProps().y}, this.ctx, this.head)
+            this.printList()
         }
         return this.head
     }
 
     insertAtTail(data){
         if(!this.head){
-            this.head = new Node(data)
+            this.head = new Node(data, {x: 10, y:20}, this.ctx)
+            //this.head.draw()
+            this.printList()
             return this.head
         }
 
@@ -32,19 +96,13 @@ class LinkedList{
         while(current.next){
             current = current.next
         }
-        current.next = new Node(data)
+        current.next = new Node(data, {x: current.getProps().x + current.getProps().width, y: current.getProps().y}, this.ctx)
+        this.printList()
+        //this.head.draw()
         return current.next
     }
 
     insertAfter(data, position){
-        // if(!node.data){
-        //     return null
-        // }
-        let newNode = new Node(data)
-        // newNode.next = node.next
-        // node.next = newNode
-        // return node.next
-
         if (!this.head) {
             return -1
         }
@@ -52,8 +110,13 @@ class LinkedList{
         let count = 1
         while(current){
             if (count === position) {
+                let newNode = new Node(data, {x: current.getProps().x + current.getProps().width, y: current.getProps().y}, this.ctx)
+                //if(newNode.next){newNode.next.remove()}
+                //this.refreshDisplay()
+                current.next.remove()
                 newNode.next = current.next
                 current.next = newNode
+                this.printList()
                 return ++count //return position of item added
             }else{
                 current = current.next
@@ -81,11 +144,15 @@ class LinkedList{
     }
 
     deleteNode(data){
-        if (this.head == null) {
+        if (this.head === null) {
             return "List is empty"
         }
-        else if(this.head.data == data){
+        else if(this.head.data === data){
+            this.head.remove()
+            this.refreshDisplay()
             this.head = this.head.next
+            console.log(this.head)
+            this.printList()
             return
         }
         let current = this.head
@@ -96,7 +163,10 @@ class LinkedList{
         }
         if(current == null)
             return
+        previous.next.remove()
         previous.next = current.next
+        this.refreshDisplay()
+        this.printList()
     }
 
     //Function to delete the node at a particular position
@@ -132,11 +202,31 @@ class LinkedList{
     }
 
     printList(){
-        console.log(this.head)
+        let current = this.head
+        while(current){
+            //items.push(current.data)
+            //this.ctx.clearRect(current.getProps().x - 1, current.getProps().y - 1, current.getProps().width + 1, current.getProps().height + 1)
+            current.remove()
+            current.draw()
+            if(current.next){//console.log(current.getProps().x, current.getProps().width)
+                current.next.update(current.getProps().x + current.getProps().width, current.getProps().y)
+            }
+            current = current.next
+        }
+    }
+
+    refreshDisplay(){
+        let current = this.head
+        while(current){
+            current.remove()
+            current = current.next
+        }
+        //this.ctx.clearRect(0, 0, this.ctx.width, this.ctx.height)
+        //this.printList()
     }
 }
 
-module.exports = LinkedList
+export {LinkedList}
 
 let list = new LinkedList()
 // list.insertAtHead(10)
