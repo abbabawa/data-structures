@@ -7,6 +7,8 @@ class Node{
     displayProps = {rect1: null, rect2: null, line: null}
     startX
     startY
+    colors = ["rgb(0, 0, 0)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"]
+    displayColor = 0
     //Defaul box width and height
     rectWidth = 40
     rectHeight = 40
@@ -61,6 +63,13 @@ class Node{
     remove(){if(this.data === 20){console.log("remove"+this.data)}
         this.ctx.clearRect(this.startX - 3, this.startY - 3, this.rectWidth + (this.rectWidth * 0.5) + 10, this.startY + this.rectHeight)
     }
+
+    animate( color, time){
+        this.ctx.strokeStyle =this.colors[color]
+        this.draw()
+        this.ctx.strokeStyle = this.colors[this.displayColor]
+        setTimeout(()=>{this.draw()}, time)
+    }
 }
 
 class LinkedList{
@@ -109,7 +118,7 @@ class LinkedList{
         let current = this.head
         let count = 1
         while(current){
-            if (count === position) {
+            if (count === Number(position)) {
                 let newNode = new Node(data, {x: current.getProps().x + current.getProps().width, y: current.getProps().y}, this.ctx)
                 //if(newNode.next){newNode.next.remove()}
                 //this.refreshDisplay()
@@ -134,8 +143,10 @@ class LinkedList{
         let count = 1
         while(current){
             if (current.data === data) {
+                current.animate(2, 6000)
                 return count
             }else{
+                current.animate(1, 3000)
                 current = current.next
             }
             count++
@@ -151,7 +162,7 @@ class LinkedList{
             this.head.remove()
             this.refreshDisplay()
             this.head = this.head.next
-            console.log(this.head)
+            //console.log(this.head)
             this.printList()
             return
         }
@@ -181,11 +192,17 @@ class LinkedList{
             current = current.next
         }
         if(previous == null){
+            this.head.remove()
             this.head = current.next
+            this.refreshDisplay()
             return
         }
+        previous.next.remove()
         previous.next = current.next
+
         current = null
+        this.refreshDisplay()
+        this.printList()
     }
 
     getListItems(){

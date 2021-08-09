@@ -14,49 +14,76 @@ let canvas
 	// rect.drawRect({x: 0, y: 0, width: 50, height: 100})
 })()
 
+let createInputAndButton = (id, placeholder, buttonClick, buttonText)=>{
+	let input = document.createElement("input")
+	input.id = id
+	input.placeholder = placeholder
+
+	let button = document.createElement("button")
+	button.innerHTML = buttonText
+	button.onclick = buttonClick
+
+	let div = document.createElement("div")
+	div.appendChild(input)
+	div.appendChild(button)
+	return div
+}
+
 let choice = document.getElementById("canvas-container").dataset.choice
 if(choice == 1){
-	//let rect = new Rectangle(canvas.getContext("2d"), {x: 30, y: 5, width: 50, height: 100}, '.')
-	//rect.deleteRect()
-	//rect.update({x: 60, y: 20, width: 50, height: 100}, 'new content')
+	
 	let list = new LinkedList(canvas.getContext("2d"))
-	const insert = (e)=>{console.log(document.getElementById("insert").value)
+	const insertAtTail = (e)=>{//console.log(document.getElementById("insert").value)
 		list.insertAtTail(document.getElementById("insert").value)
+		document.getElementById("insert").value = ''
 	}
+
+	const insertAtHead = (e)=>{//console.log(document.getElementById("insert").value)
+		list.insertAtHead(document.getElementById("insertAtHead").value)
+		document.getElementById("insert").value = ''
+	}
+
+	const insertAfter = (e)=>{console.log(document.getElementById("insertAfter").value)
+		list.insertAfter(document.getElementById("insertAfter").value, document.getElementById("pos").value)
+		document.getElementById("insert").value = ''
+	}
+
 	const deleteOp = (e)=>{
 		list.deleteNode(document.getElementById("delete").value)
+		document.getElementById("delete").value = ''
 	}
-	// let operations = `<div class="mt-2 pt-2">
-	// 	<input type="text" name="insert" placeholder="Insert Data" id="insert" >
-	// 	<button type="button" onclick="${insert}">Insert</button>
-	// </div>`
-	let  insertInput = document.createElement("input")
-	insertInput.id = "insert"
-	insertInput.type = "text"
-	let insertButton = document.createElement("button")
-	insertButton.innerHTML = "insert"
-	insertButton.onclick = insert
 
-	let deleteInput = document.createElement("input")
-	deleteInput.id = "delete"
-	let deleteButton = document.createElement("button")
-	deleteButton.innerHTML = "Delete"
-	deleteButton.onclick = deleteOp
-	document.getElementById("ops").appendChild(insertInput)
-	document.getElementById("ops").appendChild(insertButton)
-	document.getElementById("ops").appendChild(deleteInput)
-	document.getElementById("ops").appendChild(deleteButton)
+	const deleteNodeAt = (e)=>{
+		list.deleteNodeAt(document.getElementById("deleteAt").value)
+		document.getElementById("delete").value = ''
+	}
+
+	const search = (e)=>{
+		list.search(document.getElementById("search").value)
+		document.getElementById("search").value = ''
+	}
+	let  insertDiv = createInputAndButton("insert", "Insert", insertAtTail, "Insert")
+	let insertAtHeadDiv = createInputAndButton("insertAtHead", "Insert At Head", insertAtHead, "Insert At Head")
+	let insertAfterDiv = createInputAndButton("insertAfter", "Insert After", insertAfter, "Insert After")
 	
-	list.insertAtHead(22)
-	list.insertAtHead(30)
-	list.insertAtHead(40)
-	list.insertAtTail(50)
-	list.insertAfter(15, 2)
-	list.deleteNode(50)
-	list.deleteNode(30)
-	list.deleteNode(40)
-	list.deleteNode(22)
-	list.deleteNode(15)
+	let pos = document.createElement("input")
+	pos.id = "pos"
+	pos.placeholder = "Position"
+	pos.type= "number"
+	insertAfterDiv.insertBefore(pos, insertAfterDiv.children[1])
+
+	let deleteDiv = createInputAndButton("delete", "Delete", deleteOp, "delete")
+	let deleteAtDiv = createInputAndButton("deleteAt", "Delete Node At", deleteNodeAt, "delete node at")
+
+	let searchDiv = createInputAndButton("search", "Search", search, "Search")
+
+	let opsDiv = document.getElementById("ops")
+	opsDiv.appendChild(insertDiv)
+	opsDiv.appendChild(insertAtHeadDiv)
+	opsDiv.appendChild(insertAfterDiv)
+	opsDiv.appendChild(deleteDiv)
+	opsDiv.appendChild(deleteAtDiv)
+	opsDiv.appendChild(searchDiv)
 }else if(choice == 2){
 	let circle = new Circle(canvas.getContext("2d"), {x: 80, y: 80, radius: 50, startAngle: 0, endAngle: Math.PI * 2, clockWise: 0})
 	//circle.delete()
