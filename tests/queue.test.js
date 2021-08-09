@@ -1,4 +1,4 @@
-const Queue = require('../Queue')
+const Queue = require('../public/js/class_lib/Queue')
 
 test('enqueue', ()=>{
 	let queueObj = new Queue()

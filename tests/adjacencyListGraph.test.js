@@ -1,4 +1,4 @@
-const Graph = require('../AdjacencyListGraph')
+const Graph = require('../public/js/class_lib/AdjacencyListGraph')
 
 test('add vertex', ()=>{
 	let graph = new Graph()

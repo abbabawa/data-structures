@@ -1,0 +1,26 @@
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		title=	"Data structure visualization"
+		<base href="/">
+		link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous")
+		link(href="./css/style.css" rel="stylesheet")
+
+	body()
+		div(class="container-fluid")
+			div(class="row")
+				div(class="col p-0")
+					<!-- As a link -->
+					nav(class="navbar navbar-light bg-light")
+						div(class="container-fluid")
+							a(class="navbar-brand" href="#") Data Structures Visualization
+
+					//- canvas(id="canvas" width="500" height="500")
+			
+			div(class="row")
+				div(class="col-md-8  px-0" id="canvas-container" data-choice=""+ds)
+
+				div(class="col-md-8" id="ops")
+					
+		script(src="./js/index.js" type="module") 

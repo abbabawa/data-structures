@@ -1,4 +1,4 @@
-const stack = require('../Stack')
+const stack = require('../public/js/class_lib/Stack')
 
 test('push', ()=>{
 	let stackObj = new stack()

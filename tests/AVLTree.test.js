@@ -1,4 +1,4 @@
-const Tree = require("../AVLTree")
+const Tree = require("../public/js/class_lib/AVLTree")
 
 /*test('insert', ()=>{console.log("start")
 	let tree = new Tree(20)
